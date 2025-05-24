@@ -1,0 +1,9 @@
+ LIBRARY 
+    EXPORTS
+		SH_DriverLoad
+		SH_UnDriverLoad
+		SH_GetModule
+		SH_ReadMemory
+		SH_WriteMemory
+		SH_QueryMemory
+		SH_RemoteCall

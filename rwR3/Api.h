@@ -1,0 +1,31 @@
+#pragma once
+#include <Windows.h>
+
+typedef struct _MMEMORY_BASIC_INFORMATION {
+	ULONG64 BaseAddress;
+	ULONG64 AllocationBase;
+	ULONG64 AllocationProtect;
+	ULONG64 RegionSize;
+	ULONG64 State;
+	ULONG64 Protect;
+	ULONG64 Type;
+} MMEMORY_BASIC_INFORMATION, *PMMEMORY_BASIC_INFORMATION;
+
+EXTERN_C BOOLEAN WINAPI SH_DriverLoad();
+
+EXTERN_C VOID WINAPI SH_UnDriverLoad();
+
+EXTERN_C ULONG64 WINAPI SH_GetModule(DWORD pid,char * moduleName);
+
+EXTERN_C BOOLEAN WINAPI SH_ReadMemory(DWORD pid, ULONG64 BaseAddress,PVOID Buffer,ULONG size);
+
+EXTERN_C BOOLEAN WINAPI SH_WriteMemory(DWORD pid, ULONG64 BaseAddress, PVOID Buffer, ULONG size);
+
+EXTERN_C BOOLEAN WINAPI SH_QueryMemory(DWORD pid, ULONG64 BaseAddress, PMMEMORY_BASIC_INFORMATION pinfo);
+
+EXTERN_C BOOLEAN WINAPI SH_ProtectProcess(DWORD pid);
+
+EXTERN_C BOOLEAN WINAPI SH_RemoteCall(DWORD pid, PVOID shellcode, DWORD shellcodeSize);
+
+EXTERN_C BOOLEAN WINAPI SH_DllInjectX86(DWORD pid, PVOID inBuf, ULONG64 buffSize);
+EXTERN_C BOOLEAN WINAPI SH_DllInjectX64(DWORD pid, PVOID inBuf, ULONG64 buffSize);
